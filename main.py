@@ -12,7 +12,7 @@ import uvicorn
 
 # Load environment variables
 load_dotenv()
-FASTAPI_PORT = int(os.getenv("FASTAPI_PORT", 4001))
+FASTAPI_PORT = int(os.getenv("FASTAPI_PORT", 3010))
 DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 
 

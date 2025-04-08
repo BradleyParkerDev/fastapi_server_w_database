@@ -53,8 +53,8 @@ fastapi_server_w_database_cron_and_logging/
 
 ### Prerequisites
 
-- **Python**: Version `3.12.6` or higher
-- **pip**: Version `24.3.1` or higher
+- **Python**: Version `3.13.1` or higher
+- **pip**: Version `25.0.1` or higher
 
 ### Setup & Installation
 
@@ -86,9 +86,33 @@ fastapi_server_w_database_cron_and_logging/
    cp example.env .env
    ```
 
-
-
 ### Database Setup
+
+   **Configure `.env` with your connection string**:
+   ```bash
+   DATABASE_URL=postgresql://user:password@localhost:5432/your_database
+   ```
+   **Run Alembic Migrations**
+   ```bash
+   alembic revision --autogenerate -m "init"
+   alembic upgrade head
+   ```
+
+### Cron Job Configuration
+
+   **Enable in `.env`**:
+   ```bash
+   RUN_SCHEDULER=true
+   ```
+   **Runtime Control (in code)**:
+   ```bash
+   cron = CronJobUtility()
+   cron.session.start_cron()     # Starts cron
+   cron.session.stop_cron()      # Stops cron
+   cron.session.restart_cron()   # Restarts cron
+   ```
+   Cron job runs every 10 minutes (10, 20, ..., 0) to clean expired sessions. It deletes expired sessions directly from the database, ensuring stale session data does not persist.
+
 ---
 
 ## Scripts
@@ -100,42 +124,6 @@ python main.py
 ```
 
 By default, the server runs at `http://127.0.0.1:3010`.
-
----
-
-## Development Notes
-
-### Routes
-- **API Routes**: Defined in `app/routes/users_routes.py` for user-related API endpoints.
-- **Web Routes**: Defined in `app/routes/web_routes.py` for rendering web pages using templates.
-
-### Middleware
-Custom middleware can be found in `main.py`:
-- **Authorization Middleware**: Intended purpose is to manage the user's session.
-- **No-Cache Middleware**: Disables browser caching.
-
-### Hot Reloading with Arel
-- **Hot Reload**: Using Arel, any changes made to files in the `resources` and `public` directories automatically trigger a browser refresh.
-- **WebSocket Setup**: A WebSocket route is included in `main.py` to support hot reloading.
-
-### Installed Packages
-- The only two packages that were explicitly installed for this project were **`FastAPI`** and **`Arel`**.
-- All of the other packages that are listed in the `requirements.txt` were automatically downloaded as dependencies for these two packages.
-
----
-
-## Requirements
-
-Below are the primary dependencies:
-- **FastAPI**: The core framework for APIs.
-- **Jinja2**: Template rendering for web routes.
-- **Uvicorn**: ASGI server for FastAPI.
-- **Python-Dotenv**: Environment variable management.
-- **Starlette**: Provides foundational ASGI support.
-- **AnyIO**: Manages asynchronous operations.
-- **Arel**: Enables hot reloading for improved development workflow.
-
-See `requirements.txt` for the full list of dependencies.
 
 ---
 
