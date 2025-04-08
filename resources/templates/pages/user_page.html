@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <h1 class="text-[50px]">{{heading}}</h1>
+    <p>{{message}}</p>
+    <!-- Hot reload script will only be included in DEBUG mode -->
+    {% if DEBUG %}
+        {{ hotreload.script(url_for('hot-reload')) | safe }}
+    {% endif %}
+</body>
+</html>
