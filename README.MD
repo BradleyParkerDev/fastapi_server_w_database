@@ -21,7 +21,6 @@ This server is a clean foundation for building robust FastAPI applications. It i
 - **Alembic Migrations** — Version-controlled schema updates.
 - **Session-Based Auth** — On initial server hit, a guest session, token, and cookie are generated automatically.
 - **Cron Integration** — APScheduler with runtime start/stop control.
-- **Logging** — Custom logger setup for debugging and production insights.
 - **Modular App Structure** — Easily scale logic across controllers, routes, and utilities.
 - **Middleware Stack** — GZip, CORS, No-Cache, Authorization.
 - **Arel Hot Reload** — Auto-refresh on changes to `resources/` or `public/`.
@@ -31,7 +30,7 @@ This server is a clean foundation for building robust FastAPI applications. It i
 ## Project Structure
 
 ```
-fastapi_server_w_database_cron_and_logging/
+fastapi_server_w_database/
 ├── app/
 │   ├── controllers/        # Route logic & page behavior
 │   ├── database/           # SQLAlchemy models, DB engine, Alembic config
@@ -60,8 +59,8 @@ fastapi_server_w_database_cron_and_logging/
 
 1. **Clone & Navigate**:
    ```bash
-   git clone https://github.com/BradleyParkerDev/fastapi_server_w_database_cron_and_logging.git
-   cd fastapi_server_w_database_cron_and_logging
+   git clone https://github.com/BradleyParkerDev/fastapi_server_w_database.git
+   cd fastapi_server_w_database
    ```
 
 2. **Create a virtual environment**:
