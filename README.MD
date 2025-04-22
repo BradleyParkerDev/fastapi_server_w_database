@@ -17,9 +17,9 @@ This server is a clean foundation for building robust FastAPI applications. It i
 ## Features
 
 - **FastAPI Framework** — Async, high-performance web framework.
-- **Session-Based Auth** — On initial server hit, a guest session, token, and cookie are generated automatically.
 - **SQLAlchemy ORM** — PostgreSQL-backed database models.
 - **Alembic Migrations** — Version-controlled schema updates.
+- **Session-Based Auth** — On initial server hit, a guest session, token, and cookie are generated automatically.
 - **Cron Integration** — APScheduler with runtime start/stop control.
 - **Logging** — Custom logger setup for debugging and production insights.
 - **Modular App Structure** — Easily scale logic across controllers, routes, and utilities.
