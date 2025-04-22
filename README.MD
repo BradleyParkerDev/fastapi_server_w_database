@@ -1,6 +1,6 @@
-# FastAPI Server with Database, Cron, and Logging
+# FastAPI Server with Database
 
-A production-ready FastAPI boilerplate that integrates scheduled cron jobs, SQLAlchemy with Alembic for database management, and robust logging utilities. Designed to be scalable, modular, and extendable across any web application or API-driven project.
+A production-ready FastAPI boilerplate that integrates SQLAlchemy with Alembic for seamless database management. Includes a scheduled cron job for automatically cleaning up expired sessions. Designed to be scalable, modular, and easily extendable for any web application or API-driven project.
 
 ---
 
@@ -18,9 +18,9 @@ This server is a clean foundation for building robust FastAPI applications. It i
 
 - **FastAPI Framework** — Async, high-performance web framework.
 - **Session-Based Auth** — On initial server hit, a guest session, token, and cookie are generated automatically.
-- **Cron Integration** — APScheduler with runtime start/stop control.
 - **SQLAlchemy ORM** — PostgreSQL-backed database models.
 - **Alembic Migrations** — Version-controlled schema updates.
+- **Cron Integration** — APScheduler with runtime start/stop control.
 - **Logging** — Custom logger setup for debugging and production insights.
 - **Modular App Structure** — Easily scale logic across controllers, routes, and utilities.
 - **Middleware Stack** — GZip, CORS, No-Cache, Authorization.
@@ -123,7 +123,7 @@ To start the FastAPI server:
 python main.py
 ```
 
-By default, the server runs at `http://127.0.0.1:3010`.
+By default, the server runs at `http://127.0.0.1:3012`.
 
 ---
 
