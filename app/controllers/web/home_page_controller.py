@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from app.lib.logger import get_logger
 from fastapi import Request, Response, HTTPException, status
 from fastapi.templating import Jinja2Templates 
 from app.lib import LayoutUtility
@@ -16,7 +17,10 @@ layout = LayoutUtility()
 
 async def home_page_controller(request:Request, response:Response):
 
-    greeting = "Hello, World!!! \n This is a FastAPI Server with a Database!!!"
+    logger = get_logger("web")
+    logger.info("User accessed home page!!!")
+    
+    greeting = "Hello, World!!! \n This is a FastAPI server with a database!!!"
 
     return templates.TemplateResponse("pages/home_page.html",{
         "request": request,  # Pass the request object

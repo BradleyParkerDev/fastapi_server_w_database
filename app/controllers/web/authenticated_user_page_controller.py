@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from app.lib.logger import get_logger
 from fastapi import Request, Response, HTTPException, status
 from fastapi.templating import Jinja2Templates 
 from app.lib import LayoutUtility
@@ -16,7 +17,10 @@ layout = LayoutUtility()
 
 async def authenticated_user_page_controller(request:Request, response:Response, id:str):
 
-    heading = "This is an authenticated user page!!!"
+    logger = get_logger("web")
+    logger.info("User accessed authenticated user page!!!")
+
+    heading = "This is a authenticated user page!!!"
     message = (f"User Name:{id}")
 
     return templates.TemplateResponse("pages/authenticated_user_page.html",{

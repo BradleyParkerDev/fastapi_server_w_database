@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from app.lib.logger import get_logger
 from fastapi import Request, Response, HTTPException, status
 from fastapi.templating import Jinja2Templates 
 from app.lib import LayoutUtility
@@ -16,6 +17,9 @@ layout = LayoutUtility()
 
 async def user_page_controller(request:Request, response:Response):
 
+    logger = get_logger("web")
+    logger.info("User accessed user page!!!")
+    
     heading = "This is a user page!!!"
     message = "This will be used to login/register."
 
