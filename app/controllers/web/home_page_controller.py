@@ -16,7 +16,7 @@ layout = LayoutUtility()
 
 async def home_page_controller(request:Request, response:Response):
 
-    greeting = "Hello, World!!! \n This is a FastAPI CRUD App!!!"
+    greeting = "Hello, World!!! \n This is a FastAPI Server with a Database!!!"
 
     return templates.TemplateResponse("pages/home_page.html",{
         "request": request,  # Pass the request object
