@@ -1,4 +1,3 @@
-import bcrypt
 from fastapi import Request, Response
 from .auth_helpers import AuthSessionHelper, AuthTokenHelper
 from app.lib.exc import UserSessionExpired
@@ -24,12 +23,6 @@ class AuthUtility():
         expiration_time = expiration_time.replace(tzinfo=timezone.utc)
         
         token_exp = int(expiration_time.timestamp())  # Convert to Unix timestamp
-
-
-
-        # Create expiration time
-        # expiration_time = datetime.now(timezone.utc) + timedelta(days=7)  # ✅ Explicitly set UTC
-        # token_exp = int(expiration_time.timestamp())  # Convert to Unix timestamp
 
         token_payload = {
             "session_type": "guest",

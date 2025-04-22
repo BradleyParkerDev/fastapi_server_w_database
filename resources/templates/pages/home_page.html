@@ -3,70 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- htmx might require the selfRequestsOnly set to false in templates -->
+    <meta name="htmx-config" content='{"selfRequestsOnly":false}'>
     <title>FastAPI CRUD App</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col items-center justify-center min-h-screen">
 
     <div class="text-center flex flex-col items-center">
         <!-- Python GIF -->
-        <div x-data="confettiComponent()" class="w-auto h-auto">
-            <img @click="startConfettiEffect" src="/public/python.gif" alt="Python GIF" class="mb-6 w-48 h-auto mx-auto">
+        <div class="w-auto h-auto">
+            <img src="/public/python.gif" alt="Python GIF" class="mb-6 w-48 h-auto mx-auto">
         </div>
 
         <!-- Dynamic Greeting -->
         <h1 class="text-4xl font-bold mb-4">{{ greeting }}</h1>
 
-        <!-- Counter with Increment/Decrement Buttons -->
-        <div x-data="{ count: 0 }" class="mt-6">
-            <span class="text-2xl font-semibold mb-4 block" x-text="count"></span>
-            <div class="flex justify-center space-x-4">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded" @click="if (count > 0) count--">Decrement</button>
-                <button class="bg-green-500 text-white px-4 py-2 rounded" @click="count++">Increment</button>
-            </div>
+        <h1 class="text-2xl font-bold mb-4 mt-[20px]">A simple HTMX request.</h1>
+        <!-- Button to trigger HTMX request -->
+        <button
+            hx-get="https://jsonplaceholder.typicode.com/users"  
+            hx-target="#result"
+            class="p-2 bg-blue-500 text-white rounded-lg"
+        >
+            Click to Test HTMX
+            <!-- Click to Test HTMX -->
+        </button>
+
+        <!-- This will display the response from the server -->
+        <div id="result" class="mt-4 p-4 bg-white rounded shadow">
+            <!-- Server response will be displayed here -->
         </div>
     </div>
-
-    <script>
-        // Define the Alpine.js component for confetti
-        function confettiComponent() {
-            return {
-                startConfettiEffect() {
-                    const duration = 15 * 1000; // Duration in milliseconds
-                    const animationEnd = Date.now() + duration;
-                    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-                    function randomInRange(min, max) {
-                        return Math.random() * (max - min) + min;
-                    }
-
-                    const interval = setInterval(() => {
-                        const timeLeft = animationEnd - Date.now();
-
-                        if (timeLeft <= 0) {
-                            clearInterval(interval);
-                            return;
-                        }
-
-                        const particleCount = 50 * (timeLeft / duration);
-                        // Generate confetti from two origins
-                        confetti({
-                            ...defaults,
-                            particleCount,
-                            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                        });
-                        confetti({
-                            ...defaults,
-                            particleCount,
-                            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                        });
-                    }, 250); // Trigger every 250ms
-                }
-            };
-        }
-    </script> 
 
     <!-- Hot reload script will only be included in DEBUG mode -->
     {% if DEBUG %}
