@@ -19,7 +19,7 @@ async def home_page_controller(request:Request, response:Response):
 
     logger = get_logger("web")
     logger.info("User accessed home page!!!")
-    
+
     greeting = "Hello, World!!! \n This is a FastAPI server with a database!!!"
 
     return templates.TemplateResponse("pages/home_page.html",{

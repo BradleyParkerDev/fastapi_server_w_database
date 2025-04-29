@@ -15,15 +15,15 @@ DEBUG = os.getenv("DEBUG")
 layout = LayoutUtility()
 
 
-async def authenticated_user_page_controller(request:Request, response:Response, id:str):
+async def auth_page_controller(request:Request, response:Response):
 
     logger = get_logger("web")
-    logger.info("User accessed authenticated user page!!!")
+    logger.info("User accessed auth page!!!")
+    
+    heading = "This is an auth page!!!"
+    message = "This will be used to login/register a user."
 
-    heading = "This is a authenticated user page!!!"
-    message = (f"User Name:{id}")
-
-    return templates.TemplateResponse("pages/authenticated_user_page.html",{
+    return templates.TemplateResponse("pages/auth_page.html",{
         "request": request,  # Pass the request object
         "heading": heading,
         "message": message,

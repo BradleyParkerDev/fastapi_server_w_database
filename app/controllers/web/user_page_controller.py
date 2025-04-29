@@ -15,13 +15,13 @@ DEBUG = os.getenv("DEBUG")
 layout = LayoutUtility()
 
 
-async def user_page_controller(request:Request, response:Response):
+async def user_page_controller(request:Request, response:Response, id:str):
 
     logger = get_logger("web")
     logger.info("User accessed user page!!!")
-    
+
     heading = "This is a user page!!!"
-    message = "This will be used to login/register."
+    message = (f"User Name:{id}")
 
     return templates.TemplateResponse("pages/user_page.html",{
         "request": request,  # Pass the request object
