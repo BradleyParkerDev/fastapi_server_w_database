@@ -30,11 +30,11 @@ app = FastAPI(title=os.getenv("APP_NAME"),
 
 
 # Routes
-web_routes = WebRoutes()
-app.include_router(web_routes.setup_routes())
-
 user_routes = UserRoutes()
 app.include_router(user_routes.setup_routes())
+
+web_routes = WebRoutes()
+app.include_router(web_routes.setup_routes())
 
 
 # Middleware
